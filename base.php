@@ -120,6 +120,7 @@ class DB{
         return $this->pdo->exec($sql);
     }
 
+    //頁面導向
     function to($url){
     header("location:".$url);
     }
