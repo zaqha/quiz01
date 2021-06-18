@@ -1,6 +1,4 @@
 <?php
-
-
 class DB{
     private $dsn="mysql:host=localhost;charset=utf8;dbname=db_story";
     private $root='root';
