@@ -1,4 +1,38 @@
 <?php
+session_start();
+date_default_timezone_set("Asia/Taipei");
+//設定後台的抬頭文字
+$ts=[
+        "title"=>"網站標題管理",
+        "ad"=>"動態文字廣告管理",
+        'mvim'=>"動畫圖片管理",
+        "image"=>"校園映像資料管理",
+        "total"=>"進站總人數管理",
+        "bottom"=>"頁尾版權資料管理",
+        "news"=>"最新消息資料管理",
+        "admin"=>"管理者帳號管理",
+        "menu"=>"選單管理"
+    ]; 
+$as=[
+        "title"=>"新增網站標題",
+        "ad"=>"新增動態文字廣告",
+        'mvim'=>"新增動畫圖片",
+        "image"=>"新增校園映像資料",
+        "news"=>"新增最新消息資料",
+        "admin"=>"新增管理者帳號",
+        "menu"=>"新增選單"
+    ]; 
+$hs=[
+        "totoal"=>"進站總人數",
+        "title"=>"網站標題",
+        "ad"=>"動態文字廣告",
+        'mvim'=>"動畫圖片",
+        "image"=>"校園映像資料",
+        "news"=>"最新消息資料",
+        "admin"=>"管理者帳號",
+        "menu"=>"選單"
+    ]; 
+    
 class DB{
     private $dsn="mysql:host=localhost;charset=utf8;dbname=db_story";
     private $root='root';
@@ -23,6 +57,7 @@ class DB{
             // ["欄位"=>"值","欄位"=>"值"]
             // where `欄位`='值' && `欄位`='值'
             //"欄位"=>"值" ===>`欄位`＝'值'
+            // %s =>字串
             foreach($arg[0] as $key => $value){
                 $tmp[]=sprintf("`%s`='%s'",$key,$value);
             }
@@ -35,7 +70,7 @@ class DB{
             $sql=$sql . $arg[0];
         }
 
-        //如果第二個參數存在，
+        // //如果有第二個元素，表示條件後有其他附帶的SQL語法，
         //則我們規定第二個參數為一個sql的語法字串
         //因此直接將語法字串接在$sql之後即可
         if(isset($arg[1])){
@@ -124,11 +159,8 @@ class DB{
     function to($url){
     header("location:".$url);
     }
-
-}
-
-
-
+}   
+    $Total=new DB('total');
 
 
 // 考丙級``可省略(上引號:表欄位、特殊用途) ''(單引號:字串) ""(字串or模板 變數)
