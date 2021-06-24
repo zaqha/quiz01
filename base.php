@@ -83,7 +83,7 @@ class DB{
                 $sql=$sql . $arg[0];
             }
 
-            // //如果有第二個元素，表示條件後有其他附帶的SQL語法，
+            //如果有第二個元素，表示條件後有其他附帶的SQL語法，
             //則我們規定第二個參數為一個sql的語法字串
             //因此直接將語法字串接在$sql之後即可
             // ex acc="mack" or acc='admin' "where `visible`='Y'", order by...
