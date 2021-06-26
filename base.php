@@ -1,40 +1,45 @@
 <?php
 session_start();
-date_default_timezone_set("Asia/Taipei");
+date_default_timezone_set("Asia/Taipei");//這題沒有用到
+
+
+
 //設定後台的抬頭文字
+// title stream
 $ts=[
-        "title"=>"網站標題管理",
-        "ad"=>"動態文字廣告管理",
-        'mvim'=>"動畫圖片管理",
-        "image"=>"校園映像資料管理",
-        "total"=>"進站總人數管理",
-        "bottom"=>"頁尾版權資料管理",
-        "news"=>"最新消息資料管理",
-        "admin"=>"管理者帳號管理",
-        "menu"=>"選單管理"
-    ]; 
+    "title"=>"網站標題管理",
+    "ad"=>"動態文字廣告管理",
+    'mvim'=>"動畫圖片管理",
+    "image"=>"校園映像資料管理",
+    "total"=>"進站總人數管理",
+    "bottom"=>"頁尾版權資料管理",
+    "news"=>"最新消息資料管理",
+    "admin"=>"管理者帳號管理",
+    "menu"=>"選單管理"
+]; 
 $as=[
-        "title"=>"新增網站標題",
-        "ad"=>"新增動態文字廣告",
-        'mvim'=>"新增動畫圖片",
-        "image"=>"新增校園映像資料",
-        "news"=>"新增最新消息資料",
-        "admin"=>"新增管理者帳號",
-        "menu"=>"新增選單"
-    ]; 
+    "title"=>"新增網站標題圖片",
+    "ad"=>"新增動態文字廣告",
+    'mvim'=>"新增動畫圖片",
+    "image"=>"新增校園映像資料",
+    "news"=>"新增最新消息資料",
+    "admin"=>"新增管理者帳號",
+    "menu"=>"新增主選單"
+]; 
 $hs=[
-        "totoal"=>"進站總人數",
-        "title"=>"網站標題",
-        "ad"=>"動態文字廣告",
-        'mvim'=>"動畫圖片",
-        "image"=>"校園映像資料",
-        "news"=>"最新消息資料",
-        "admin"=>"管理者帳號",
-        "menu"=>"選單"
-    ]; 
+    "title"=>"網站標題圖片",
+    "ad"=>"動態文字廣告",
+    'mvim'=>"動畫圖片",
+    "image"=>"校園映像資料",
+    "total"=>"進站總人數：",
+    "bottom"=>"頁尾版權資料：",
+    "news"=>"最新消息資料",
+    "admin"=>"管理者帳號",
+    "menu"=>"選單"
+];
     
 class DB{
-    private $dsn="mysql:host=localhost;charset=utf8;dbname=db_story";
+    private $dsn="mysql:host=localhost;charset=utf8;dbname=db01";
     private $root='root';
     private $password='123456';
     private $table;
@@ -176,12 +181,33 @@ class DB{
         return $this->pdo->exec($sql);
     }
 
+
+}   
+
     //頁面導向
     function to($url){
-    header("location:".$url);
-    }
-}   
+        header("location:".$url);
+        }
+
     $Total=new DB('total');
+    $Bottom=new DB('bottom');
+    $Title=new DB('title');
+    $Ad=new DB('ad');
+    $Mvim=new DB('mvim');
+    $Image=new DB('image');
+
+
+    // 如果沒有session 資料庫+1
+    if(!isset($_SESSION['total'])){
+        $total=$Total->find(1);
+        // $total['total']=$total['total']+1 OR
+        // $total['total']+=1
+        $total['total']++;
+        $Total->save($total);
+        $_SESSION['total']=1;//數字沒有影響，只是為了讓變數存在
+        // +1後有了session就不會再加了
+    }
+
 
 
 // 考丙級``可省略(上引號:表欄位、特殊用途) ''(單引號:字串) ""(字串or模板 變數)

@@ -1,4 +1,5 @@
-<?php include_once "base.php"; ?>
+<?php include_once "base.php";?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,8 +9,8 @@
 
 	<title>卓越科技大學校園資訊系統</title>
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
-	<script src="./JS/jquery-1.9.1.min.js"></script>
-	<script src="./JS/js.js"></script>
+	<script src="./js/jquery-1.9.1.min.js"></script>
+	<script src="./js/js.js"></script>
 </head>
 
 <body>
@@ -31,11 +32,9 @@
 					<span class="t botli">主選單區</span>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 :<?php
-						// $total=$total->find(1);
-						// echo $total['total'];
-						echo $total->find(1)['total'];
-						;?>
+					<span class="t">進站總人數 :<?=$Total->find(1)['total'];?> 
+						<!-- $total=$total->find(1);
+						echo $total['total']; -->
 						</span>
 				</div>
 			</div>
@@ -53,17 +52,17 @@
 						//如果網址後亂打=>main
 						//考丙級可以直接打 include $file;
 
-						// switch($_GET[$do]){
-						// 	case "news":
-						// 		include "fornt/news.php";
-						// 	break;
-						// 	case "login":
-						// 		include "front/login.php";
-						// 	break;
-						// 	default:
-						// 		include "front/main.php";
-						//}
-					?>
+					// 	switch($_GET[$do]){
+					// 		case "news":
+					// 			include "fornt/news.php";
+					// 		break;
+					// 		case "login":
+					// 			include "front/login.php";
+					// 		break;
+					// 		default:
+					// 			include "front/main.php";
+					// 	}
+					// ?>
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=login&#39;)">管理登入</button>
@@ -94,7 +93,7 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;"></span>
+			<span class="t" style="line-height:123px;"><?=$Bottom->find(1)['bottom'];?></span>
 		</div>
 	</div>
 

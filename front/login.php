@@ -27,7 +27,3 @@
 					}
 				)
 			</script>
-
-</body>
-
-</html>
