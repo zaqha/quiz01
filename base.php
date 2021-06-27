@@ -195,6 +195,9 @@ class DB{
     $Ad=new DB('ad');
     $Mvim=new DB('mvim');
     $Image=new DB('image');
+    $News=new DB('news');
+    $Admin=new DB('admin');
+    $Menu=new DB('menu');
 
 
     // 如果沒有session 資料庫+1

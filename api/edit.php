@@ -1,6 +1,6 @@
 <?php include_once "../base.php";
 
-$texts=$_POST['text'];
+// $texts=$_POST['text']; admin沒有text
 $ids=$_POST['id'];
 // print_r($texts);
 // print_r($ids);
@@ -33,13 +33,23 @@ foreach($ids as $key => $id){
   // 【單選】$row['sh']=(isset($_POST['sh']) && $_POST['sh']==$id)?1:0;
 
   switch($table){
-    case 'title';
+    case 'title':
         $row['sh']=(isset($_POST['sh']) && $_POST['sh']==$id)?1:0;
-        $row['text']=$texts[$key];
+        $row['text']=$_POST['text'][$key];
+      break;
+    case 'admin':
+        $row['acc']=$_POST['acc'][$key];
+        $row['pw']=$_POST['pw'][$key];
+    case 'menu':
+      $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+      $row['text']=$_POST['text'][$key];       
+      $row['href']=$_POST['href'][$key];       
       break;
       default:
         $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
-  }
+        $row['text']=$_POST['text'][$key];
+
+      }
   $db->save($row);
   }
 }
