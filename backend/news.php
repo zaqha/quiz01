@@ -50,8 +50,6 @@
 						if(($now+1)<=$pages){
 							echo "<a href='?do=news&p=".($now+1)."'> > </a>";
 						}
-
-
 						?>
 						</div>
 						<!--  -->
